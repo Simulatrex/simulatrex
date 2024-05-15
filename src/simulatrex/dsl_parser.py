@@ -1,4 +1,6 @@
-from simulatrex.simulation_entities import Agent, Simulation, Environment
+from simulatrex.agents.generative_agent import GenerativeAgent
+from simulatrex.simulation import Simulation
+from simulatrex.environment import Environment
 from ply import lex, yacc
 
 # List of token names. This is always required
@@ -8,7 +10,6 @@ tokens = (
     "SIMULATION",
     "IDENTIFIER",
     "NUMBER",
-    "ACTIONS",
     "ATTRIBUTES",
     "ENTITIES",
     "EPOCHS",
@@ -58,11 +59,6 @@ def t_SIMULATION(t):
     return t
 
 
-def t_ACTIONS(t):
-    r"Actions"
-    return t
-
-
 def t_ATTRIBUTES(t):
     r"Attributes"
     return t
@@ -109,11 +105,10 @@ def p_simulation_entity(p):
 
 
 def p_agent_definition(p):
-    """agent_definition : AGENT COLON IDENTIFIER attributes actions"""
+    """agent_definition : AGENT COLON IDENTIFIER attributes"""
     agent_identifier = p[3]
     agent_attributes = p[4]
-    agent_actions = p[5]
-    p[0] = Agent(agent_identifier, agent_attributes, agent_actions)
+    p[0] = GenerativeAgent(agent_identifier, agent_attributes)
 
 
 def p_environment_definition(p):
@@ -133,11 +128,6 @@ def p_simulation_definition(p):
 
 def p_attributes(p):
     """attributes : ATTRIBUTES COLON list_of_identifiers"""
-    p[0] = p[3]
-
-
-def p_actions(p):
-    """actions : ACTIONS COLON list_of_identifiers"""
     p[0] = p[3]
 
 
@@ -208,7 +198,7 @@ def parse_dsl(data):
     for item in parsed_data:
         if isinstance(item, Simulation) and simulation is None:
             simulation = item
-        elif isinstance(item, Agent):
+        elif isinstance(item, GenerativeAgent):
             agents.append(item)
         elif isinstance(item, Environment) and environment is None:
             environment = item

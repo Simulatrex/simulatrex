@@ -1,7 +1,7 @@
 """
 Author: Dominik Scherm (dom@simulatrex.ai)
 
-File: types.py
+File: model.py
 Description: Types for the LLMs
 
 """
@@ -10,7 +10,7 @@ from enum import Enum
 from simulatrex.llms.utils.memory import LongTermMemory, ShortTermMemory
 
 
-class LanguageModel(Enum):
+class LanguageModelId(Enum):
     GPT_4_TURBO = "gpt-4-0125-preview"
     GPT_4 = "gpt-4"
     GPT_3_5_Turbo = "gpt-3.5-turbo"

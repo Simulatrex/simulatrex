@@ -7,6 +7,7 @@ import useSimulation from "@/hooks/useRunSimulation";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import ResizableContainer from "@/components/resizebale-container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,7 +65,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={`${inter.className} bg-white dark:bg-[#181818]`}>
+    <main className={`${inter.className} bg-white dark:bg-[#181818] h-screen`}>
       <div className="border-b">
         <div className="h-16 flex items-center px-4">
           <Navbar className="mx-6" />
@@ -89,19 +90,35 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex w-full">
-        <div className="w-1/2 h-screen p-4 bg-gray-50 dark:bg-gray-700">
+      <div className="flex w-full h-full">
+        <ResizableContainer
+          className="p-4 bg-gray-50 dark:bg-gray-700"
+          initialWidth="50%"
+          initialHeight="auto"
+          resizeDirection="x"
+        >
           <CodeEditor code={code} setCode={setCode} key={"code-editor"} />
-        </div>
-        <div className="w-1/2 h-screen p-4">
+        </ResizableContainer>
+        <ResizableContainer
+          className="p-4"
+          initialWidth="50%"
+          initialHeight="auto"
+          resizeDirection="x"
+        >
           <div className="w-full h-4/5">
             <Preview agents={agents} />
           </div>
-          <div className="h-1/5 mt-4 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-800 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-2">Simulation Logs:</h2>
-            <p className="whitespace-pre-wrap font-mono">{simulationOutcome}</p>
+
+          <div className="w-full h-auto mt-4 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-800 rounded-lg shadow">
+            <h2 className="text-lg font-semibold mb-2 text-gray-700 dark:text-white">
+              Simulation Logs:
+            </h2>
+
+            <p className="whitespace-pre-wrap font-mono text-gray-600 dark:text-gray-200">
+              {simulationOutcome}
+            </p>
           </div>
-        </div>
+        </ResizableContainer>
       </div>
     </main>
   );

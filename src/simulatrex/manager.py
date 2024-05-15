@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from .simulation_entities import Simulation
+from .simulation import Simulation
 
 
 @asynccontextmanager

@@ -1,8 +1,8 @@
 """
 Author: Dominik Scherm (dom@simulatrex.ai)
 
-File: target_audience.py
-Description: Target Audience Class
+File: generative_audiences.py
+Description: Defines the generative audience class for the simulation
 
 """
 

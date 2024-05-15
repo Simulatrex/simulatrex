@@ -5,16 +5,13 @@ File: db.py
 Description: Database utils
 
 """
+
 import os
 import uuid
 from sqlalchemy import Column, String, Float, Integer, create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-from simulatrex.utils.log import SingletonLogger
-
 Base = declarative_base()
-
-_logger = SingletonLogger
 
 
 class MemoryUnitDB(Base):

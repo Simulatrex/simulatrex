@@ -5,8 +5,8 @@ File: vectordb.py
 Description: Defines the vectordb class, which is a wrapper around ChromaDB
 
 """
+
 import os
-import shutil
 import chromadb
 from chromadb.utils import embedding_functions
 from dotenv import load_dotenv

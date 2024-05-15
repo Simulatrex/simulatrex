@@ -16,13 +16,15 @@ setup(
     include_package_data=True,
     package_dir={"": "src"},
     package_data={
-        "simulatrex": ["llm_utils/prompt_templates/*.txt"],
+        "simulatrex": ["llms/prompts/prompt_templates/**/*.txt"],
     },
     install_requires=[
+        "pandas",
+        "numpy",
+        "chromadb",
         "openai",
         "uuid",
         "termcolor",
-        "chromadb",
         "pydantic",
         "python-dotenv",
         "requests",

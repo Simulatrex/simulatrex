@@ -15,6 +15,7 @@ const Preview: React.FC<PreviewProps> = ({ agents }) => {
   const size = 20; // Example size, this can be dynamic
   const tileColor = "#EEF0F4"; // Light grey for the tiles
   const [hoveredAgentId, setHoveredAgentId] = useState<string | null>(null);
+  console.log(agents);
 
   return (
     <Canvas camera={{ position: [size / 2, size, size * 2], fov: 60 }}>
